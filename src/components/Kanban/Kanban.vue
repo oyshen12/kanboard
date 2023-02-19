@@ -1,17 +1,29 @@
 <template>
   <div>
-    <DraggableColumn />
+    <DraggableColumn
+      v-for="column in columns"
+      :key="column.id"
+      :column="column"
+    />
   </div>
 </template>
 
 <script>
-import { defineComponent } from "vue";
+import { defineComponent, computed } from "vue";
 import DraggableColumn from "@/components/DraggableColumn/DraggableColumn";
+import { useStore } from "vuex";
+import { key } from "@/store/index";
 
 export default defineComponent({
   name: "KanBan",
   components: {
     DraggableColumn,
+  },
+  setup() {
+    const store = useStore(key);
+    return {
+      columns: computed(() => store.state.columns),
+    };
   },
 });
 </script>

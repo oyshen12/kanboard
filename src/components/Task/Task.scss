@@ -24,8 +24,17 @@
     &-priority {
       width: 20px;
       height: 20px;
-      background-image: url("/src/assets/icons/priority-high.svg");
       background-size: contain;
+
+      &.low {
+        background-image: url("/src/assets/icons/priority-low.svg");
+      }
+      &.medium {
+        background-image: url("/src/assets/icons/priority-medium.svg");
+      }
+      &.high {
+        background-image: url("/src/assets/icons/priority-high.svg");
+      }
     }
   }
 }
