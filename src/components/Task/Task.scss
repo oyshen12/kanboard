@@ -1,0 +1,31 @@
+.task {
+  border-radius: 5px;
+  padding: 10px 15px;
+  font-size: 16px;
+  line-height: 20px;
+  background: white;
+
+  &__info {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+
+    &-img {
+      width: 20px;
+      height: 20px;
+      background-image: url("/src/assets/icons/task__feature.png");
+      background-size: contain;
+    }
+
+    &-name {
+      margin-left: 5px;
+    }
+
+    &-priority {
+      width: 20px;
+      height: 20px;
+      background-image: url("/src/assets/icons/priority-high.svg");
+      background-size: contain;
+    }
+  }
+}

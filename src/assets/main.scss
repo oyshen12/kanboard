@@ -1,0 +1,41 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+#app {
+  font-family: "Gilroy-Regular";
+  color: black;
+  font-weight: 400;
+  font-size: 20px;
+  font-weight: 24px;
+  text-align: start;
+}
+
+.d-flex {
+  display: flex;
+}
+
+@font-face {
+  font-family: "Nekst-Black";
+  src: local("Nekst-Black"),
+    url("@/assets/fonts/Nekst-Black.woff") format("woff");
+  font-weight: 100;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Gilroy-Regular";
+  src: local("Gilroy-Regular"),
+    url("@/assets/fonts/Gilroy-Regular.woff") format("woff");
+  font-weight: 100;
+  font-style: normal;
+}
