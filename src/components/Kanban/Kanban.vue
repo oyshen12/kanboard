@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="kanban">
     <DraggableColumn
       v-for="column in columns"
       :key="column.id"

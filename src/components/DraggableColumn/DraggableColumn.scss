@@ -1,4 +1,6 @@
 .column {
+  display: flex;
+  flex-direction: column;
   width: 300px;
   min-height: 500px;
   background: #f4f3f4;
@@ -20,5 +22,15 @@
     grid-template-columns: 1fr;
     grid-gap: 10px 0;
     padding: 10px 5px;
+
+    &-wrap {
+      height: 100%;
+      border: 2px dashed transparent;
+
+      &.active {
+        border: 2px dashed green;
+        border-radius: 0 0 10px 10px;
+      }
+    }
   }
 }

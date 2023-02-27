@@ -1,5 +1,10 @@
 <template>
-  <div draggable="true" @dragstart="onDragStart($event, task.id)" class="task">
+  <div
+    draggable="true"
+    @dragstart="onDragStart($event, task.id)"
+    @dragend="onDragEnd(task.id)"
+    class="task"
+  >
     <div class="task__name">{{ task.description }}</div>
     <div class="task__info">
       <div class="d-flex">
@@ -24,17 +29,22 @@ export default defineComponent({
       required: true,
     },
   },
-  setup() {
+  setup(props, { emit }) {
     const onDragStart = (e: DragEvent, id: number) => {
       if (e.dataTransfer) {
         e.dataTransfer.dropEffect = "move";
         e.dataTransfer.effectAllowed = "move";
-        e.dataTransfer.setData("itemId", id.toString());
+        emit("onDragStart", id);
       }
+    };
+
+    const onDragEnd = (id: number) => {
+      emit("onDragEnd", id);
     };
 
     return {
       onDragStart,
+      onDragEnd,
     };
   },
 });
