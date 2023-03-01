@@ -31,9 +31,13 @@ export default defineComponent({
   },
   setup(props, { emit }) {
     const onDragStart = (e: DragEvent, id: number) => {
+      const target = e.target as HTMLTextAreaElement;
+      if (target.style?.opacity) {
+        target.style.opacity = "1";
+      }
       if (e.dataTransfer) {
-        e.dataTransfer.dropEffect = "move";
-        e.dataTransfer.effectAllowed = "move";
+        e.dataTransfer.dropEffect = "copy";
+        e.dataTransfer.effectAllowed = "copy";
         emit("onDragStart", id);
       }
     };
