@@ -1,4 +1,4 @@
-import { State } from "./storeTypes";
+import { State } from "./state";
 import { createStore, Store } from "vuex";
 import { state } from "./state";
 import getters from "./getters";

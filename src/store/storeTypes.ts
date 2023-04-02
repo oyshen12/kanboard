@@ -4,16 +4,9 @@ export type task = {
   name: string;
   description: string;
   priority: taskPriority;
-  columnId: number;
 };
 export type column = {
   id: number;
   name: string;
-};
-
-export interface State {
   tasks: task[];
-  columns: column[];
-  draggableTaskId: number;
-  draggableColumnId: number;
-}
+};

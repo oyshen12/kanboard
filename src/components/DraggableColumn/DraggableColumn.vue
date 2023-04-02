@@ -1,36 +1,27 @@
 <template>
-  <div class="column">
+  <div class="column dropzone" :id="column.id">
     <div class="column__info">
       <div>{{ column.name }}</div>
-      <div class="column__info-amount">{{ tasks.length }}</div>
+      <div class="column__info-amount">{{ column.tasks.length }}</div>
     </div>
     <div class="column__tasks-wrap">
       <div class="column__tasks">
-        <Task
-          v-for="task in tasks"
-          :key="task.id"
-          :task="task"
-          @onDragStart="(taskId) => onDragStart(taskId)"
-          @onDragEnd="onDragEnd()"
-        />
+        <Task v-for="task in column.tasks" :key="task.id" :task="task" />
       </div>
       <div
-        @drop="onDrop"
-        @dragover.prevent
-        @dragenter="onDragEnter"
-        @dragleave="onDragLeave"
-        :class="{ active: dropColumnActive, activeHover: activeHover }"
-        class="column__tasks-droppable"
+        :class="{
+          active: dropColumnActive,
+          activeHover: hoverColumnId === column.id,
+        }"
+        class="column__tasks-droppable dropzone"
       ></div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref } from "vue";
+import { computed, defineComponent } from "vue";
 import Task from "@/components/Task/Task.vue";
-import { column } from "@/store/storeTypes";
-import type { PropType } from "vue";
 import { useStore } from "vuex";
 import { key } from "@/store/index";
 
@@ -41,57 +32,22 @@ export default defineComponent({
   },
   props: {
     column: {
-      type: Object as PropType<column>,
+      type: Object,
       required: true,
     },
   },
   setup(props) {
     const store = useStore(key);
 
-    const activeHoverFlag = ref(false);
-    const activeHover = computed(
-      () =>
-        activeHoverFlag.value &&
-        store.state.draggableColumnId !== -1 &&
-        store.state.draggableColumnId !== props.column.id
-    );
-
-    const tasks = computed(() =>
-      store.state.tasks.filter((task) => task.columnId === props.column.id)
-    );
-
     const dropColumnActive = computed(() => {
       const draggableColumnId = store.state.draggableColumnId;
       return draggableColumnId !== -1 && draggableColumnId !== props.column.id;
     });
 
-    const onDrop = () => {
-      store.commit("transferTask", props.column.id);
-    };
-    const onDragStart = (taskId: number) => {
-      store.commit("setDraggableTaskId", taskId);
-      store.commit("setDraggableColumnId", props.column.id);
-    };
-    const onDragEnd = () => {
-      store.commit("clearDraggbleInfo");
-    };
-    const onDragEnter = () => {
-      activeHoverFlag.value = true;
-    };
-    const onDragLeave = () => {
-      activeHoverFlag.value = false;
-    };
-
     return {
-      onDrop,
-      onDragStart,
-      tasks,
+      draggableColumnId: computed(() => store.state.draggableColumnId),
+      hoverColumnId: computed(() => store.state.hoverColumnId),
       dropColumnActive,
-      onDragEnd,
-      activeHoverFlag,
-      activeHover,
-      onDragEnter,
-      onDragLeave,
     };
   },
 });
