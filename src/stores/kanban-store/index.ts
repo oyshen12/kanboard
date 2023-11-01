@@ -16,38 +16,28 @@ export const useKanbanStore = defineStore('kanban', {
         hoverColumnId: null,
     }),
     actions: {
-        setDraggableTaskId( taskId: number) {
+        setDraggableTaskId(taskId: number | null) {
             this.draggableTaskId = taskId;
         },
-        transferTask( transferColumnId: number) {
-            let taskIndex = -1;
-            const columnIndex = this.columns.findIndex((column) => {
-                const index = column.tasks.findIndex(
-                    (task) => task.id === this.draggableTaskId
-                );
-                if (index !== -1) {
-                    taskIndex = index;
+        findTaskIndex(taskId: number | null) {
+            let columnIndex  = -1;
+            let taskIndex  = -1;
+            this.columns.some((column, index) => {
+                taskIndex = column.tasks.findIndex(task => task.id === taskId);
+                if (taskIndex !== -1) {
+                    columnIndex = index;
                     return true;
                 }
             });
-            const transferColumnIndex = this.columns.findIndex(
-                (column) => column.id === transferColumnId
-            );
+            return { columnIndex, taskIndex };
+        },
+        transferTask(transferColumnId: number) {
+            const {taskIndex, columnIndex} = this.findTaskIndex(this.draggableTaskId);
+            const transferColumnIndex = this.columns.findIndex(column => column.id === transferColumnId);
+            if (columnIndex === -1 || transferColumnIndex === -1 || columnIndex === transferColumnIndex) return;
 
-            if (
-                taskIndex !== -1 &&
-                columnIndex !== -1 &&
-                transferColumnIndex !== -1 &&
-                columnIndex !== transferColumnIndex
-            ) {
-                const [transferedTask] = this.columns[columnIndex].tasks.splice(
-                    taskIndex,
-                    1
-                );
-                this.columns[transferColumnIndex].tasks.push(transferedTask);
-                this.draggableColumnId = null;
-                this.draggableTaskId = null;
-            }
+            const [transferedTask] = this.columns[columnIndex].tasks.splice(taskIndex, 1);
+            this.columns[transferColumnIndex].tasks.push(transferedTask);
         },
         setDraggableColumnId(columnId: number | null) {
             this.draggableColumnId = columnId;
@@ -57,7 +47,7 @@ export const useKanbanStore = defineStore('kanban', {
             this.draggableTaskId = null;
             this.hoverColumnId = null;
         },
-        setHoverColumnId( columnId: number) {
+        setHoverColumnId( columnId: number | null) {
             this.hoverColumnId = columnId;
         },
         setColumns(columns: Column[]) {

@@ -55,7 +55,7 @@ export const useDraggable = () => {
                 kanbanStore.setHoverColumnId(+dropzone.id)
             }
             if (currentDropzone) {
-                kanbanStore.setHoverColumnId(-1)
+                kanbanStore.setHoverColumnId(null)
             }
             currentDropzone = dropzone ?? null;
         }
