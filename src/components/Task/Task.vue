@@ -1,29 +1,27 @@
 <template>
-  <div class="task draggable" :id="task.id">
-    <div class="task__name">{{ task.description }}</div>
+  <div class="task" :class="draggableClass" :id="props.task.id">
+    <div class="task__name">{{ props.task.description }}</div>
     <div class="task__info">
       <div class="d-flex">
         <div class="task__info-img"></div>
-        <div class="task__info-name">{{ task.name }}</div>
+        <div class="task__info-name">{{ props.task.name }}</div>
       </div>
-      <div class="task__info-priority" :class="task.priority"></div>
+      <div class="task__info-priority" :class="props.task.priority"></div>
     </div>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
+<script lang="ts" setup>
+import {withDefaults, defineProps} from "vue";
+import {Task} from '@/stores/kanban-store/types'
+import {draggableClass} from '@/hooks/useDraggable'
 
-export default defineComponent({
-  name: "TaskKanban",
-  props: {
-    task: {
-      type: Object,
-      required: true,
-    },
-  },
-});
+type Props = {
+  task: Task
+}
+const props = withDefaults(defineProps<Props>(), {})
+
+
 </script>
 
-<style scoped lang="scss" src="./Task.scss">
-</style>
+<style scoped lang="scss" src="./Task.scss"/>

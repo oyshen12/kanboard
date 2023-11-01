@@ -1,5 +1,5 @@
 <template>
-  <div class="column dropzone" :id="column.id">
+  <div class="column" :class="dropzoneClass" :id="column.id">
     <div class="column__info">
       <div>{{ column.name }}</div>
       <div class="column__info-amount">{{ column.tasks.length }}</div>
@@ -11,7 +11,7 @@
       <div
         :class="{
           active: dropColumnActive,
-          activeHover: hoverColumnId === column.id,
+          activeHover: kanbanStore.hoverColumnId === column.id,
         }"
         class="column__tasks-droppable dropzone"
       ></div>
@@ -19,37 +19,22 @@
   </div>
 </template>
 
-<script lang="ts">
-import { computed, defineComponent } from "vue";
+<script lang="ts" setup>
+import { computed, withDefaults, defineProps } from "vue";
 import Task from "@/components/Task/Task.vue";
-import { useStore } from "vuex";
-import { key } from "src/stores";
+import {useKanbanStore} from "@/stores/kanban-store";
+import {Column} from '@/stores/kanban-store/types'
+import {dropzoneClass} from "@/hooks/useDraggable";
 
-export default defineComponent({
-  name: "DraggbleColumn",
-  components: {
-    Task,
-  },
-  props: {
-    column: {
-      type: Object,
-      required: true,
-    },
-  },
-  setup(props) {
-    const store = useStore(key);
+type Props = {
+  column: Column
+}
+const props = withDefaults(defineProps<Props>(), {});
 
-    const dropColumnActive = computed(() => {
-      const draggableColumnId = store.state.draggableColumnId;
-      return draggableColumnId !== -1 && draggableColumnId !== props.column.id;
-    });
-
-    return {
-      draggableColumnId: computed(() => store.state.draggableColumnId),
-      hoverColumnId: computed(() => store.state.hoverColumnId),
-      dropColumnActive,
-    };
-  },
+const kanbanStore = useKanbanStore();
+const dropColumnActive = computed(() => {
+  const draggableColumnId = kanbanStore.draggableColumnId;
+  return draggableColumnId !== null && draggableColumnId !== props.column.id;
 });
 </script>
 
