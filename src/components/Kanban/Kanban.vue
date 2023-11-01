@@ -12,8 +12,8 @@
 import { defineComponent, computed, onMounted, onUnmounted } from "vue";
 import DraggableColumn from "@/components/DraggableColumn/DraggableColumn.vue";
 import { useStore } from "vuex";
-import { key } from "@/store/index";
-import * as storeType from "@/store/storeTypes";
+import { key } from "@/stores/index";
+import * as storeType from "@/stores/storeTypes";
 
 export default defineComponent({
   name: "KanBan",

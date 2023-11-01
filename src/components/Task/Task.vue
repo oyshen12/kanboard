@@ -15,7 +15,7 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: "TaskKanboard",
+  name: "TaskKanban",
   props: {
     task: {
       type: Object,

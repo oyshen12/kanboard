@@ -23,7 +23,7 @@
 import { computed, defineComponent } from "vue";
 import Task from "@/components/Task/Task.vue";
 import { useStore } from "vuex";
-import { key } from "@/store/index";
+import { key } from "src/stores";
 
 export default defineComponent({
   name: "DraggbleColumn",
