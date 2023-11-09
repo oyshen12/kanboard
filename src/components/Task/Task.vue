@@ -2,9 +2,9 @@
   <div class="task" :class="draggableClass" :id="props.task.id">
     <div class="task__name">{{ props.task.description }}</div>
     <div class="task__info">
-      <div class="d-flex">
-        <div class="task__info-img"></div>
-        <div class="task__info-name">{{ props.task.name }}</div>
+      <div class="task__info-block">
+        <div class="task__info-block-img"></div>
+        <div class="task__info-block-name">{{ props.task.name }}</div>
       </div>
       <div class="task__info-priority" :class="props.task.priority"></div>
     </div>
@@ -12,9 +12,9 @@
 </template>
 
 <script lang="ts" setup>
-import {withDefaults, defineProps} from "vue";
-import {Task} from '@/stores/kanban-store/types'
-import {draggableClass} from '@/hooks/useDraggable'
+import { withDefaults, defineProps } from "vue";
+import { Task } from '@/stores/kanban-store/types'
+import { draggableClass } from '@/hooks/useDraggable'
 
 type Props = {
   task: Task

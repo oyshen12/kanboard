@@ -1,5 +1,5 @@
-import {onMounted, onUnmounted} from "vue";
-import {useKanbanStore} from '@/stores/kanban-store'
+import { onMounted, onUnmounted } from "vue";
+import { useKanbanStore } from '@/stores/kanban-store'
 
 export const dropzoneClass = 'dropzone'
 export const draggableClass = 'draggable'

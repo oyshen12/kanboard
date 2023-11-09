@@ -1,4 +1,5 @@
-import {Column} from '@/stores/kanban-store/types'
+import { Column } from '@/stores/kanban-store/types'
+
 export const mockColumns: Column[] = [{
     id: 0,
     name: "Selected for development",

@@ -1,4 +1,5 @@
 {
+  "extends": "./tsconfig.base.json",
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
@@ -26,5 +27,6 @@
     "tests/**/*.tsx",
     "src/classes/DragClass.js"
   ],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "dist"],
+  "references": [{ "path": "./tsconfig.node.json" }]
 }
