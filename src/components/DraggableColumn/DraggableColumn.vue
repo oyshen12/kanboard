@@ -1,5 +1,5 @@
 <template>
-  <div class="column" :class="dropzoneClass" :id="column.id">
+  <div class="column">
     <div class="column__info">
       <div>{{ column.name }}</div>
       <div class="column__info-amount">{{ column.tasks.length }}</div>
@@ -9,9 +9,11 @@
         <Task v-for="task in column.tasks" :key="task.id" :task="task"/>
       </div>
       <div
+        :id="column.id"
         :class="{
           active: dropColumnActive,
           activeHover: kanbanStore.hoverColumnId === column.id,
+          dropzoneClass
         }"
         class="column__tasks-droppable dropzone"
       ></div>
