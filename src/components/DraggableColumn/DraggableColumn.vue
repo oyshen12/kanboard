@@ -9,11 +9,11 @@
         <Task v-for="task in column.tasks" :key="task.id" :task="task"/>
       </div>
       <div
-          :class="{
+        :class="{
           active: dropColumnActive,
           activeHover: kanbanStore.hoverColumnId === column.id,
         }"
-          class="column__tasks-droppable dropzone"
+        class="column__tasks-droppable dropzone"
       ></div>
     </div>
   </div>

@@ -1,9 +1,9 @@
 <template>
   <div class="kanban">
     <DraggableColumn
-        v-for="column in kanbanStore.columns"
-        :key="column.id"
-        :column="column"
+      v-for="column in kanbanStore.columns"
+      :key="column.id"
+      :column="column"
     />
   </div>
 </template>
