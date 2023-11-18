@@ -1,5 +1,5 @@
 <template>
-  <div class="task" :class="draggableClass" :id="props.task.id">
+  <div class="task" v-draggable="props.task.id">
     <div class="task__name">{{ props.task.description }}</div>
     <div class="task__info">
       <div class="task__info-block">
@@ -14,7 +14,6 @@
 <script lang="ts" setup>
 import { withDefaults, defineProps } from "vue";
 import { Task } from '@/stores/kanban-store/types'
-import { draggableClass } from '@/hooks/useDraggable'
 
 type Props = {
   task: Task
