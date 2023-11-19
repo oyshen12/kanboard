@@ -1,6 +1,10 @@
 .kanban {
-  display: flex;
-  justify-content: space-around;
   max-width: 1350px;
   margin: 0 auto;
+}
+
+.kanban__columns {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: 32px;
 }

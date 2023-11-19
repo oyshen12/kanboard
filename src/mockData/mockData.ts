@@ -2,96 +2,96 @@ import { Column } from '@/stores/kanban-store/types'
 
 export const mockColumns: Column[] = [{
   id: 0,
-  name: "Selected for development",
+  name: "К выполнению",
   tasks: [
     {
       id: 0,
       name: "BS-161",
-      description: "Description",
+      description: "Исправить кнопку",
       priority: "high",
     },
     {
       id: 1,
       name: "BS-162",
-      description: "Description",
+      description: "Поменять цвет",
       priority: "low",
     },
     {
       id: 2,
       name: "BS-163",
-      description: "Description",
+      description: "Рефакторинг",
       priority: "medium",
     },
   ],
 },
   {
     id: 1,
-    name: "Suspended",
+    name: "В работе",
     tasks: [
       {
         id: 3,
         name: "BS-164",
-        description: "Description",
+        description: "Внедрение нового функционала",
         priority: "high",
       },
       {
         id: 4,
         name: "BS-165",
-        description: "Description",
+        description: "Доработка по задаче",
         priority: "low",
       },
       {
         id: 5,
         name: "BS-166",
-        description: "Description",
+        description: "Багфикс",
         priority: "medium",
       },
     ],
   },
   {
     id: 2,
-    name: "In work",
+    name: "На проверке",
     tasks: [
       {
         id: 6,
         name: "BS-167",
-        description: "Description",
+        description: "Ресерч",
         priority: "low",
       },
       {
         id: 7,
         name: "BS-168",
-        description: "Description",
+        description: "Прочтение документации",
         priority: "medium",
       },
       {
         id: 8,
         name: "BS-169",
-        description: "Description",
+        description: "Написать документацию",
         priority: "low",
       },
     ],
   },
   {
     id: 3,
-    name: "Ready",
+    name: "Готово",
     tasks: [
       {
         id: 9,
         name: "BS-170",
-        description: "Description",
+        description: "Подготовка к собеседованию",
         priority: "medium",
       },
       {
         id: 10,
         name: "BS-171",
-        description: "Description",
+        description: "Написать тесты",
         priority: "low",
       },
       {
         id: 11,
         name: "BS-172",
-        description: "Description",
+        description: "Сделать адаптив",
         priority: "high",
       },
     ],
